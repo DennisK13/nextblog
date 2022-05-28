@@ -3,6 +3,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { IArticleFields } from "../src/@types/contentful";
 import ContentService from "../src/util/content-service";
+import Header from "../components/navbar/Navbar";
 interface Props {
   articles: IArticleFields[];
 }
@@ -11,7 +12,7 @@ interface Props {
 const Home: NextPage<Props> = ({ articles }) => {
   const slugs = <ul>{articles.map(article => <li>{article.slug}</li>)}</ul>;
   return (
-    <div className={styles.container}>
+    <div className='px-8 h-[3000px]'>
       <Head>
         <title>Blog Title</title>
         <meta
@@ -20,16 +21,17 @@ const Home: NextPage<Props> = ({ articles }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header></Header>
 
-      <main className={styles.main}>
-        {slugs}
-        <h1 className={styles.title}>Welcome to my blog!</h1>
+      <main className='min-h-screen py-16 flex flex-1 flex-col justify-center items-center'>
+        {/* {slugs} */}
+        <h1 className='text-5xl font-bold underline'>Welcome to my blog!</h1>
 
-        <p className={styles.description}>
+        <p className='text-center my-16 text-4xl'>
           This is a blog with many intersting articles about blank.
         </p>
 
-        <div className={styles.grid}>
+        <div className='flex items-center justify-center flex-wrap max-w-[800px]'>
           {articles.map((article) => (
             <a
               key={article.slug}
